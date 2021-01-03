@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>SWR React Hooks 库源码阅读 | ihaoze</title>
+    <meta name="description" content="when your talent can&#39;t support your ambition, you should calm down and learn">
+    <meta name="generator" content="VuePress 1.3.0">
+    <link rel="preload" href="/assets/css/0.styles.0ca84290.css" as="style"><link rel="preload" href="/assets/js/app.21acb0b1.js" as="script"><link rel="preload" href="/assets/js/7.855be055.js" as="script"><link rel="preload" href="/assets/js/23.f8d7524e.js" as="script"><link rel="prefetch" href="/assets/js/1.f9681251.js"><link rel="prefetch" href="/assets/js/10.94d52328.js"><link rel="prefetch" href="/assets/js/100.14b7e50e.js"><link rel="prefetch" href="/assets/js/101.e2466cc0.js"><link rel="prefetch" href="/assets/js/102.28d34ed0.js"><link rel="prefetch" href="/assets/js/103.3cd1724f.js"><link rel="prefetch" href="/assets/js/104.e7ddf1ec.js"><link rel="prefetch" href="/assets/js/105.06472fc4.js"><link rel="prefetch" href="/assets/js/106.317773c9.js"><link rel="prefetch" href="/assets/js/107.d672fed2.js"><link rel="prefetch" href="/assets/js/108.1099464c.js"><link rel="prefetch" href="/assets/js/109.d526852e.js"><link rel="prefetch" href="/assets/js/11.6afc0236.js"><link rel="prefetch" href="/assets/js/110.79ef8c8e.js"><link rel="prefetch" href="/assets/js/111.742316d7.js"><link rel="prefetch" href="/assets/js/112.99184973.js"><link rel="prefetch" href="/assets/js/113.15f362ce.js"><link rel="prefetch" href="/assets/js/114.76a59ebe.js"><link rel="prefetch" href="/assets/js/115.ceacf5b1.js"><link rel="prefetch" href="/assets/js/116.d097350a.js"><link rel="prefetch" href="/assets/js/117.429f1e41.js"><link rel="prefetch" href="/assets/js/118.4d8400d4.js"><link rel="prefetch" href="/assets/js/119.d74a206e.js"><link rel="prefetch" href="/assets/js/12.a6c60c77.js"><link rel="prefetch" href="/assets/js/120.b7b10af4.js"><link rel="prefetch" href="/assets/js/121.ade46b33.js"><link rel="prefetch" href="/assets/js/122.d7b05c05.js"><link rel="prefetch" href="/assets/js/13.68d4a637.js"><link rel="prefetch" href="/assets/js/14.46df4650.js"><link rel="prefetch" href="/assets/js/15.d04cba04.js"><link rel="prefetch" href="/assets/js/16.c8fd1239.js"><link rel="prefetch" href="/assets/js/17.92d19ae8.js"><link rel="prefetch" href="/assets/js/18.d517c614.js"><link rel="prefetch" href="/assets/js/19.5241e026.js"><link rel="prefetch" href="/assets/js/20.f3310346.js"><link rel="prefetch" href="/assets/js/21.c45f67cb.js"><link rel="prefetch" href="/assets/js/22.6829cad9.js"><link rel="prefetch" href="/assets/js/24.33d7e4dd.js"><link rel="prefetch" href="/assets/js/25.af8b0e6e.js"><link rel="prefetch" href="/assets/js/26.81dbf535.js"><link rel="prefetch" href="/assets/js/27.976b1c03.js"><link rel="prefetch" href="/assets/js/28.22085d63.js"><link rel="prefetch" href="/assets/js/29.4121b087.js"><link rel="prefetch" href="/assets/js/3.dd8a5370.js"><link rel="prefetch" href="/assets/js/30.2a22a746.js"><link rel="prefetch" href="/assets/js/31.799fed4f.js"><link rel="prefetch" href="/assets/js/32.31fffcd9.js"><link rel="prefetch" href="/assets/js/33.8d58e2e4.js"><link rel="prefetch" href="/assets/js/34.fa398048.js"><link rel="prefetch" href="/assets/js/35.ccf0ac07.js"><link rel="prefetch" href="/assets/js/36.5732db12.js"><link rel="prefetch" href="/assets/js/37.25ad0a6c.js"><link rel="prefetch" href="/assets/js/38.c59a17a3.js"><link rel="prefetch" href="/assets/js/39.2b5b3b7f.js"><link rel="prefetch" href="/assets/js/4.26e251db.js"><link rel="prefetch" href="/assets/js/40.24ce99ef.js"><link rel="prefetch" href="/assets/js/41.ac98f7f7.js"><link rel="prefetch" href="/assets/js/42.92abb079.js"><link rel="prefetch" href="/assets/js/43.066ed781.js"><link rel="prefetch" href="/assets/js/44.b85937c5.js"><link rel="prefetch" href="/assets/js/45.42d05867.js"><link rel="prefetch" href="/assets/js/46.62660da8.js"><link rel="prefetch" href="/assets/js/47.a23ecec8.js"><link rel="prefetch" href="/assets/js/48.f5917e2b.js"><link rel="prefetch" href="/assets/js/49.f1fe7358.js"><link rel="prefetch" href="/assets/js/5.474043a0.js"><link rel="prefetch" href="/assets/js/50.bee8cb1d.js"><link rel="prefetch" href="/assets/js/51.3e785a93.js"><link rel="prefetch" href="/assets/js/52.8f89c7c1.js"><link rel="prefetch" href="/assets/js/53.28244cb7.js"><link rel="prefetch" href="/assets/js/54.56e5e14c.js"><link rel="prefetch" href="/assets/js/55.c8414541.js"><link rel="prefetch" href="/assets/js/56.9042cac2.js"><link rel="prefetch" href="/assets/js/57.6caf715a.js"><link rel="prefetch" href="/assets/js/58.0074c27c.js"><link rel="prefetch" href="/assets/js/59.21850a5e.js"><link rel="prefetch" href="/assets/js/6.cab40f6d.js"><link rel="prefetch" href="/assets/js/60.440dc521.js"><link rel="prefetch" href="/assets/js/61.de4ce15f.js"><link rel="prefetch" href="/assets/js/62.31535277.js"><link rel="prefetch" href="/assets/js/63.0083fd26.js"><link rel="prefetch" href="/assets/js/64.7aa3537a.js"><link rel="prefetch" href="/assets/js/65.cadf6fb0.js"><link rel="prefetch" href="/assets/js/66.d6e36335.js"><link rel="prefetch" href="/assets/js/67.d60e2d18.js"><link rel="prefetch" href="/assets/js/68.6b8eff39.js"><link rel="prefetch" href="/assets/js/69.03d24806.js"><link rel="prefetch" href="/assets/js/70.1b3c6119.js"><link rel="prefetch" href="/assets/js/71.294b41cd.js"><link rel="prefetch" href="/assets/js/72.e6dd0325.js"><link rel="prefetch" href="/assets/js/73.50efb403.js"><link rel="prefetch" href="/assets/js/74.7cf18ddc.js"><link rel="prefetch" href="/assets/js/75.3170a5ce.js"><link rel="prefetch" href="/assets/js/76.a7a83052.js"><link rel="prefetch" href="/assets/js/77.bef46437.js"><link rel="prefetch" href="/assets/js/78.eafaa101.js"><link rel="prefetch" href="/assets/js/79.a12a96c4.js"><link rel="prefetch" href="/assets/js/8.d5f666d5.js"><link rel="prefetch" href="/assets/js/80.9c71e9bf.js"><link rel="prefetch" href="/assets/js/81.dd3f90b8.js"><link rel="prefetch" href="/assets/js/82.14a4c13b.js"><link rel="prefetch" href="/assets/js/83.6c9f0e70.js"><link rel="prefetch" href="/assets/js/84.0786dc32.js"><link rel="prefetch" href="/assets/js/85.9b5c615d.js"><link rel="prefetch" href="/assets/js/86.ad19986a.js"><link rel="prefetch" href="/assets/js/87.ac32137c.js"><link rel="prefetch" href="/assets/js/88.d06aa835.js"><link rel="prefetch" href="/assets/js/89.42657fda.js"><link rel="prefetch" href="/assets/js/9.e8a443e3.js"><link rel="prefetch" href="/assets/js/90.0671f7ff.js"><link rel="prefetch" href="/assets/js/91.25f54e96.js"><link rel="prefetch" href="/assets/js/92.38be84ce.js"><link rel="prefetch" href="/assets/js/93.cd1ff090.js"><link rel="prefetch" href="/assets/js/94.9dd76f68.js"><link rel="prefetch" href="/assets/js/95.09757d9b.js"><link rel="prefetch" href="/assets/js/96.c425e12f.js"><link rel="prefetch" href="/assets/js/97.d352e2b4.js"><link rel="prefetch" href="/assets/js/98.8b44d59f.js"><link rel="prefetch" href="/assets/js/99.e88d5720.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.0ca84290.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div id="vuepress-theme-meteorlxy"><header class="header" data-v-7a046aea><div data-v-e4145d0a data-v-7a046aea><nav class="navbar" data-v-e4145d0a><div class="container" data-v-e4145d0a><a href="/" class="router-link-active" data-v-e4145d0a><span class="navbar-site-name" data-v-e4145d0a>
+          ihaoze
+        </span></a> <div class="navbar-toggler" data-v-e4145d0a><svg class="icon" style="font-size:1.2em;" data-v-e4145d0a data-v-e4145d0a><title data-v-e4145d0a data-v-e4145d0a>menu</title><use xlink:href="#icon-menu" data-v-e4145d0a data-v-e4145d0a></use></svg></div> <div class="navbar-links" data-v-e4145d0a><a href="/" class="navbar-link" data-v-e4145d0a>
+            Home
+          </a><a href="/posts/" class="navbar-link router-link-active" data-v-e4145d0a>
+            Posts
+          </a><a href="/leetcode/" class="navbar-link" data-v-e4145d0a>
+            LeetCode
+          </a><a href="https://github.com/lhz960904" target="_blank" rel="noopener noreferrer" class="navbar-link" data-v-e4145d0a><span data-v-e4145d0a>Github</span> <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound" data-v-e4145d0a data-v-e4145d0a><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div></div></nav> <div class="navbar-holder" style="display:none;" data-v-e4145d0a></div></div> <div class="banner" data-v-98d6aa8c data-v-7a046aea data-v-7a046aea><div class="container" data-v-98d6aa8c><div class="center" data-v-98d6aa8c><h1 data-v-98d6aa8c data-v-7a046aea>
+          SWR React Hooks 库源码阅读
+        </h1></div></div></div></header> <div class="container clearfix show-aside" data-v-4dd605a1 data-v-4dd605a1><main class="main" data-v-4dd605a1><div class="post" data-v-4dd605a1 data-v-4dd605a1><section class="post-meta main-div" data-v-4e23451f><section class="post-date clearfix" data-v-4e23451f><span class="create-date" data-v-4e23451f>
+      发布时间 : 2020-08-21
+    </span> <span class="update-date" data-v-4e23451f>
+      最后修改 : 2020-08-23
+    </span></section> <section class="post-links" data-v-4e23451f><a href="/posts/2020/07/13/promise.html" class="post-link" data-v-4e23451f>
+      上一篇 : 实现Promise，遵循Promise/A+规范
+    </a> <a href="/posts/2020/08/31/vue-reactivity-peel.html" class="post-link" data-v-4e23451f>
+      下一篇 : @vue/reactivity 响应式源码阅读
+    </a></section></section> <article class="main-div"><div class="post-content content content__default"><p><code>SWR</code> 库是请求远程数据的 React Hooks ，它可以更好地帮助我们管理请求，它有很多特性，其中包括但不仅限于<strong>页面聚焦重新取数</strong>、<strong>对数据的缓存</strong>、<strong>轮询</strong>、<strong>请求去重</strong>等等。<code>SWR</code>开源以来收获大量 star ，本文通过对源码阅读，来一起学习它。</p> <hr> <p><code>useSWR</code> 的源码有710行代码，如果我们从头开始逐行的去阅读，可能会产生很多困扰，很可能导致我们半途而废，这也是读源码的大忌。所以我们将按照 <code>useSWR</code> 的功能来分模块儿的去阅读，这样不仅能每次的减少阅读量，还能对每个功能点认知更加清楚。<strong>全部代码解析请前往<a href="https://github.com/super-wall/swr" target="_blank" rel="noopener noreferrer">GitHub<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></strong></p> <h2 id="配置"><a href="#配置" class="header-anchor">#</a> 配置</h2> <p>配置可以通过俩种方式来设置，<strong>1</strong>. 使用 <code>SWRConfig</code> 全局配置 <strong>2</strong>. 使用 <code>useSWR</code> 时局部配置，使用代码如下：</p> <div class="language-jsx extra-class"><pre class="language-jsx"><code><span class="token comment">// 1. SWRConfig 全局配置</span>
+<span class="token keyword">function</span> <span class="token function">App</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">SWRConfig</span></span>
+      <span class="token attr-name">value</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span><span class="token punctuation">{</span>
+        refreshInterval<span class="token operator">:</span> <span class="token number">3000</span><span class="token punctuation">,</span>
+        <span class="token function-variable function">fetcher</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token operator">...</span>args</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token function">fetch</span><span class="token punctuation">(</span><span class="token operator">...</span>args<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">res</span> <span class="token operator">=&gt;</span> res<span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+      <span class="token punctuation">}</span><span class="token punctuation">}</span></span>
+    <span class="token punctuation">&gt;</span></span><span class="token plain-text">
+      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">SomeComponent</span></span> <span class="token punctuation">/&gt;</span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token class-name">SWRConfig</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token comment">// 2. 局部配置 第2或第3个参数，可以省略fetcher函数</span>
+<span class="token keyword">const</span> <span class="token punctuation">{</span> data <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token function">useSWR</span><span class="token punctuation">(</span><span class="token string">'/api/user'</span><span class="token punctuation">,</span> fetcher<span class="token punctuation">,</span> <span class="token punctuation">{</span> refreshInterval<span class="token operator">:</span> <span class="token number">3000</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> <span class="token punctuation">{</span> data <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token function">useSWR</span><span class="token punctuation">(</span><span class="token string">'/api/user'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> refreshInterval<span class="token operator">:</span> <span class="token number">3000</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre></div><p>我们来看一下 <code>useSWR</code> 内部的配置合并代码</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">function</span> <span class="token function">useSWR</span><span class="token punctuation">(</span><span class="token parameter">key<span class="token punctuation">,</span> fn<span class="token punctuation">,</span> config</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  config <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> defaultConfig<span class="token punctuation">,</span> <span class="token function">useContext</span><span class="token punctuation">(</span>SWRConfigContext<span class="token punctuation">)</span><span class="token punctuation">,</span> config<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">const</span> SWRConfig <span class="token operator">=</span> SWRConfigContext<span class="token punctuation">.</span>Provider
+</code></pre></div><p>上述代码一目了然，可以看到内部是通过 <code>Object.assign</code> API 将三个配置合并成一个对象，全局配置就是通过 <code>React Context</code> 实现，局部配置就是调用时传入的配置对象。</p> <p>优先级关系是 <strong>默认配置 &lt; 全局配置 &lt; 局部配置</strong>。</p> <p>默认配置的解析可以看<strong>文章末尾附录</strong>部分，标注了详细注释。</p> <h2 id="缓存"><a href="#缓存" class="header-anchor">#</a> 缓存</h2> <p><code>useSWR</code> 会根据传入的第一个参数生成key，来缓存请求后的结果或错误，这样就可以做到请求结果返回前，先使用缓存数据。我们不看源代码也应该可以想到，缓存就是通过 <code>Map</code> 来实现。 <code>SWR</code> 库实现了一个缓存类，其实现非常简单。这里值得提的就是<strong>序列化key</strong>的方法 <code>serializeKey</code> , 其他方法具体实现可以查看<a href="https://github.com/super-wall/swr/blob/peel/src/cache.ts" target="_blank" rel="noopener noreferrer">github<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// &gt;&gt; src/cache.ts</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">Cache</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter">initialData <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 缓存Map，可以传初始缓存对象</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>__cache <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Map</span><span class="token punctuation">(</span>Object<span class="token punctuation">.</span><span class="token function">entries</span><span class="token punctuation">(</span>initialData<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token comment">// 订阅者函数数组</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>__listeners <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+  <span class="token punctuation">}</span>
+  <span class="token comment">// 根据key获取缓存</span>
+  <span class="token keyword">get</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+  <span class="token comment">// 设置对应key的缓存值，并且执行订阅者函数</span>
+  <span class="token keyword">set</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> value<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+  <span class="token comment">// 获取所有key的数组</span>
+  <span class="token function">keys</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+  <span class="token comment">// 查看是否存在对应key的缓存值</span>
+  <span class="token function">has</span><span class="token punctuation">(</span><span class="token parameter">key</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+  <span class="token comment">// 清空缓存，并且执行订阅者函数</span>
+  <span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+  <span class="token comment">// 删除对应key的缓存，并且执行订阅者函数</span>
+  <span class="token keyword">delete</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+  <span class="token comment">// 添加订阅者函数到数组中，返回取消订阅的函数(从数组中移除)</span>
+  <span class="token function">subscribe</span><span class="token punctuation">(</span><span class="token parameter">listener</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+  <span class="token comment">// 循环订阅者函数数组，执行函数。</span>
+  <span class="token keyword">private</span> <span class="token function">notify</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+  <span class="token comment">// 对传入的key进行序列化</span>
+  <span class="token function">serializeKey</span><span class="token punctuation">(</span><span class="token parameter">key</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> args <span class="token operator">=</span> <span class="token keyword">null</span>
+    <span class="token comment">//  传入函数直接执行拿到key</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> key <span class="token operator">===</span> <span class="token string">'function'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">try</span> <span class="token punctuation">{</span>
+        key <span class="token operator">=</span> <span class="token function">key</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+      <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 函数中报错，可能是因为依赖取数还没有准备好导致的</span>
+        key <span class="token operator">=</span> <span class="token string">''</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">// 如果是数组，代表都是参数</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>Array<span class="token punctuation">.</span><span class="token function">isArray</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      args <span class="token operator">=</span> key
+      <span class="token comment">// 使用 hash 方法根据数组生成字符串</span>
+      key <span class="token operator">=</span> <span class="token function">hash</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 转换成字符串，null =&gt; ''</span>
+      key <span class="token operator">=</span> <span class="token function">String</span><span class="token punctuation">(</span>key <span class="token operator">||</span> <span class="token string">''</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">// 错误的key加上err@前缀</span>
+    <span class="token keyword">const</span> errorKey <span class="token operator">=</span> key <span class="token operator">?</span> <span class="token string">'err@'</span> <span class="token operator">+</span> key <span class="token operator">:</span> <span class="token string">''</span>
+    <span class="token keyword">return</span> <span class="token punctuation">[</span>key<span class="token punctuation">,</span> args<span class="token punctuation">,</span> errorKey<span class="token punctuation">]</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>其中 <code>hash</code> 方法是根据数组的元素，进行拼接得到一个key字符串，具体实现可以看<strong>文章末尾附录</strong>部分</p> <h2 id="基本使用"><a href="#基本使用" class="header-anchor">#</a> 基本使用</h2> <div class="language-jsx extra-class"><pre class="language-jsx"><code><span class="token keyword">const</span> <span class="token punctuation">{</span> data<span class="token punctuation">,</span> error<span class="token punctuation">,</span> isValidating<span class="token punctuation">,</span> mutate <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token function">useSWR</span><span class="token punctuation">(</span><span class="token string">'/api/user'</span><span class="token punctuation">,</span> fetcher<span class="token punctuation">)</span> 
+</code></pre></div><p>如果我们在组件中进行异步数据获取，都是在<strong>挂载阶段</strong>请求，使用 <code>React Hooks</code> ，我们可以用 <code>useEffect</code> 依赖项传入空数组来模拟 <code>ComponentDidMount</code> 阶段。为了使请求提前，我们可以使用 <code>useLayoutEffect</code> 代替 <code>useEffect</code> ， 但为了兼容 <code>SSR</code> 环境，我们可以根据环境使用不同的 <code>API</code> 。下面是精简后的代码：</p> <div class="language-jsx extra-class"><pre class="language-jsx"><code><span class="token comment">// 尽量将请求时机提前，考虑到SSR, 浏览器客户端使用useLayoutEffect，服务端使用useEffect</span>
+<span class="token keyword">const</span> useIsomorphicLayoutEffect <span class="token operator">=</span> <span class="token constant">IS_SERVER</span> <span class="token operator">?</span> useEffect <span class="token operator">:</span> useLayoutEffect
+<span class="token keyword">function</span> <span class="token function">useSWR</span><span class="token punctuation">(</span><span class="token parameter">key<span class="token punctuation">,</span> fn<span class="token punctuation">,</span> config</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 初始值（可能为空），先通过请求标识符尝试取缓存，不存在使用配置中的初始值</span>
+  <span class="token keyword">const</span> initialData <span class="token operator">=</span> cache<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span> <span class="token operator">||</span> config<span class="token punctuation">.</span>initialData
+  <span class="token comment">// 初始错误，通过错误标识符取缓存</span>
+  <span class="token keyword">const</span> initialError <span class="token operator">=</span> cache<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>keyErr<span class="token punctuation">)</span>
+  <span class="token comment">// 状态值</span>
+  <span class="token keyword">const</span> stateRef <span class="token operator">=</span> <span class="token function">useRef</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    data<span class="token operator">:</span> initialData<span class="token punctuation">,</span>
+    error<span class="token operator">:</span> initialError<span class="token punctuation">,</span>
+    isValidating<span class="token operator">:</span> <span class="token boolean">false</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token comment">// 取数逻辑，会在后面详细分析</span>
+  <span class="token keyword">const</span> revalidate <span class="token operator">=</span> <span class="token function">useCallback</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span> <span class="token comment">/*...*/</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+  <span class="token comment">// 模拟DidMount，做一次取数（请求）</span>
+  <span class="token function">useIsomorphicLayoutEffect</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>key<span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token keyword">undefined</span>
+    <span class="token comment">// 请求标识符key有值后，需要标记为组件已挂载</span>
+    unmountedRef<span class="token punctuation">.</span>current <span class="token operator">=</span> <span class="token boolean">false</span>
+    <span class="token comment">// 组件挂载后，我们需要更新从缓存更新数据，并且触发重新取数</span>
+    <span class="token keyword">const</span> latestKeyedData <span class="token operator">=</span> cache<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span> <span class="token operator">||</span> config<span class="token punctuation">.</span>initialData
+    <span class="token comment">// 会清除重复数据的重新取数，一定间隔内，会保存请求，碰到重复的，直接使用之前的。</span>
+    <span class="token keyword">const</span> <span class="token function-variable function">softRevalidate</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token function">revalidate</span><span class="token punctuation">(</span><span class="token punctuation">{</span> dedupe<span class="token operator">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token comment">// 触发重新取数，选项挂载请求为true 或者 没设置“初始值”和“挂载请求”</span>
+    <span class="token comment">// 如果显式的设置了“挂载请求”为false，初始值没有也不会触发</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>
+      config<span class="token punctuation">.</span>revalidateOnMount <span class="token operator">||</span>
+      <span class="token punctuation">(</span><span class="token operator">!</span>config<span class="token punctuation">.</span>initialData <span class="token operator">&amp;&amp;</span> config<span class="token punctuation">.</span>revalidateOnMount <span class="token operator">===</span> <span class="token keyword">undefined</span><span class="token punctuation">)</span>
+    <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> latestKeyedData <span class="token operator">!==</span> <span class="token string">'undefined'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 优化：如果有缓存数据，利用requestIdleCallback API 在浏览器空闲时间重新取数，以免阻塞渲染</span>
+        <span class="token function">rIC</span><span class="token punctuation">(</span>softRevalidate<span class="token punctuation">)</span>
+      <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 没有缓存数据，就必须直接取数</span>
+        <span class="token function">softRevalidate</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 标记为卸载</span>
+      unmountedRef<span class="token punctuation">.</span>current <span class="token operator">=</span> <span class="token boolean">true</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>key<span class="token punctuation">,</span> revalidate<span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>上述代码是在挂载阶段，默认会进行一次请求。如果显式的设置了<code>config.revalidateOnMount</code> 为 <code>false</code> ，挂载阶段是不会执行的。可以看到，开始会尝试从缓存中取值，如果不存在就使用配置中的初始值，如果最后值不为空，那我们不着急请求，所以这里可以进行优化（因为页面不会显示空白），使用 <code>requestIdleCallback</code> API 在 浏览器空闲阶段执行。其中 <code>rIC</code> 方法如下</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// 不支持requestIdleCallback，用setTimeout模拟</span>
+<span class="token keyword">const</span> rIC <span class="token operator">=</span> <span class="token constant">IS_SERVER</span>
+  <span class="token operator">?</span> <span class="token keyword">null</span>
+  <span class="token operator">:</span> window<span class="token punctuation">[</span><span class="token string">'requestIdleCallback'</span><span class="token punctuation">]</span> <span class="token operator">||</span> <span class="token punctuation">(</span><span class="token parameter">f</span> <span class="token operator">=&gt;</span> <span class="token function">setTimeout</span><span class="token punctuation">(</span>f<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre></div><h2 id="取数请求逻辑"><a href="#取数请求逻辑" class="header-anchor">#</a> 取数请求逻辑</h2> <p>我们接下来看 <code>revalidate</code>，<code>softRevalidate</code> 的具体实现。其实它的作用主要执行传进来的 <code>fetcher</code>，然后改变 <code>stateRef</code>，最后触发组件渲染。我们来看下精简后的代码</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// 用于强制渲染</span>
+<span class="token keyword">const</span> rerender <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
+<span class="token comment">// 类似于redux的dispatch 用于更新state(data, error, isValidating)</span>
+<span class="token keyword">let</span> dispatch <span class="token operator">=</span> <span class="token function">useCallback</span><span class="token punctuation">(</span><span class="token parameter">payload</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> k <span class="token keyword">in</span> payload<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    stateRef<span class="token punctuation">.</span>current<span class="token punctuation">[</span>k<span class="token punctuation">]</span> <span class="token operator">=</span> payload<span class="token punctuation">[</span>k<span class="token punctuation">]</span>
+  <span class="token punctuation">}</span>
+  <span class="token comment">// 组件已卸载</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>unmountedRef<span class="token punctuation">.</span>current<span class="token punctuation">)</span> <span class="token keyword">return</span>
+  <span class="token comment">// 强制渲染</span>
+  <span class="token function">rerender</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token comment">// 重新取数，返回布尔值Promise</span>
+<span class="token keyword">const</span> <span class="token function-variable function">revalidate</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">revalidateOpts</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 请求标识符或请求函数不存在直接返回false</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>key <span class="token operator">||</span> <span class="token operator">!</span>fn<span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token boolean">false</span>
+  <span class="token comment">// 组件已卸载返回false</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>unmountedRef<span class="token punctuation">.</span>current<span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token boolean">false</span>
+  <span class="token keyword">try</span> <span class="token punctuation">{</span>
+    <span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      isValidating<span class="token operator">:</span> <span class="token boolean">true</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token keyword">let</span> newData
+    <span class="token keyword">let</span> startAt
+    <span class="token comment">// 执行请求，将Promise存在CONCURRENT_PROMISES对象中</span>
+    <span class="token constant">CONCURRENT_PROMISES</span><span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">fn</span><span class="token punctuation">(</span><span class="token operator">...</span>fnArgs<span class="token punctuation">)</span>
+    <span class="token comment">// 将请求结果赋值给newData</span>
+    newData <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token constant">CONCURRENT_PROMISES</span><span class="token punctuation">[</span>key<span class="token punctuation">]</span>
+    <span class="token comment">// 将结果缓存起来</span>
+    cache<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> newData<span class="token punctuation">)</span>
+    cache<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span>keyErr<span class="token punctuation">,</span> <span class="token keyword">undefined</span><span class="token punctuation">)</span>
+    <span class="token comment">// 为dispatch函数创建新的state</span>
+    <span class="token keyword">const</span> newState <span class="token operator">=</span> <span class="token punctuation">{</span>
+      isValidating<span class="token operator">:</span> <span class="token boolean">false</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">// 此次请求没有发生错误，如果之前是错误，需要修改</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> stateRef<span class="token punctuation">.</span>current<span class="token punctuation">.</span>error <span class="token operator">!==</span> <span class="token string">'undefined'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      newState<span class="token punctuation">.</span>error <span class="token operator">=</span> <span class="token keyword">undefined</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">// 请求结果不相等时(深度比较)，更新</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>config<span class="token punctuation">.</span><span class="token function">compare</span><span class="token punctuation">(</span>stateRef<span class="token punctuation">.</span>current<span class="token punctuation">.</span>data<span class="token punctuation">,</span> newData<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      newState<span class="token punctuation">.</span>data <span class="token operator">=</span> newData
+    <span class="token punctuation">}</span>
+    <span class="token comment">// 更新state，触发渲染。</span>
+    <span class="token function">dispatch</span><span class="token punctuation">(</span>newState<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 捕获错误</span>
+    <span class="token comment">// 缓存设置错误</span>
+    cache<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span>keyErr<span class="token punctuation">,</span> err<span class="token punctuation">)</span>
+    <span class="token comment">// 发生错误不同，更新state</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>stateRef<span class="token punctuation">.</span>current<span class="token punctuation">.</span>error <span class="token operator">!==</span> err<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+        isValidating<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+        error<span class="token operator">:</span> err
+      <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> <span class="token boolean">true</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>上述代码是 <code>revalidate</code> 方法精简代码，<code>softRevalidate</code> 方法只是传入的参数不同， <code>{ dedupe: true }</code> 代表去重，每次执行请求都会保存短时间，当这段时间内，相同的请求被触发，会直接使用之前的，而不会重新请求。</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// 会清除重复数据的重新取数，一定间隔内，会保存请求，碰到重复的，直接使用之前的。</span>
+<span class="token keyword">const</span> <span class="token function-variable function">softRevalidate</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token function">revalidate</span><span class="token punctuation">(</span><span class="token punctuation">{</span> dedupe<span class="token operator">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> <span class="token function-variable function">revalidate</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">revalidateOpts</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 忽略无关代码...</span>
+  <span class="token comment">// 是否可以使用重复请求。我们执行传入的fetcher，会把Promise暂存在CONCURRENT_PROMISES对象上</span>
+  <span class="token keyword">let</span> shouldDeduping <span class="token operator">=</span> <span class="token keyword">typeof</span> <span class="token constant">CONCURRENT_PROMISES</span><span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token operator">!==</span> <span class="token string">'undefined'</span> <span class="token operator">&amp;&amp;</span> revalidateOpts<span class="token punctuation">.</span>dedupe
+  <span class="token comment">// 已经有一个正在进行的请求，需要去重，直接使用之前的就可以。</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>shouldDeduping<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    newData <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token constant">CONCURRENT_PROMISES</span><span class="token punctuation">[</span>key<span class="token punctuation">]</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 执行请求，将Promise存在CONCURRENT_PROMISES对象中</span>
+    <span class="token constant">CONCURRENT_PROMISES</span><span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">fn</span><span class="token punctuation">(</span><span class="token operator">...</span>fnArgs<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+  <span class="token comment">// config.dedupingInterval 时间后，删除此次请求，这段时间内，如果开启了dedupe，都可以直接用</span>
+  <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">delete</span> <span class="token constant">CONCURRENT_PROMISES</span><span class="token punctuation">[</span>key<span class="token punctuation">]</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span> config<span class="token punctuation">.</span>dedupingInterval<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="页面可见时重新取数"><a href="#页面可见时重新取数" class="header-anchor">#</a> 页面可见时重新取数</h2> <p><code>useSWR</code>可以做到在页面<strong>重新可见</strong>时，自动重新取数(请求)，我们也可以传入配置 <code>config.revalidateOnFocus</code> 为 <code>false</code> 来取消这个特性。 <code>useSWR</code>内部是通过监听 <code>visibilitychange</code> 和 <code>focus</code> 时，重新执行 <code>softRevalidate</code> 实现的。具体代码如下：</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// 存储页面可见时的回调函数  key =&gt; callback[]</span>
+<span class="token keyword">const</span> <span class="token constant">FOCUS_REVALIDATORS</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token comment">// 执行对象上对应key的函数。</span>
+<span class="token keyword">const</span> <span class="token function-variable function">revalidate</span> <span class="token operator">=</span> <span class="token parameter">revalidators</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token comment">// 页面可见性(visibilitychange、focus)时，重新取数</span>
+window<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span>
+  <span class="token string">'visibilitychange'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token function">revalidate</span><span class="token punctuation">(</span><span class="token constant">FOCUS_REVALIDATORS</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token boolean">false</span>
+<span class="token punctuation">)</span>
+window<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'focus'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token function">revalidate</span><span class="token punctuation">(</span><span class="token constant">FOCUS_REVALIDATORS</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span>
+<span class="token keyword">function</span> <span class="token function">useSWR</span><span class="token punctuation">(</span><span class="token parameter">key<span class="token punctuation">,</span> fn<span class="token punctuation">,</span> config</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 忽略无关代码...</span>
+  <span class="token function">useIsomorphicLayoutEffect</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 页面可见时回调，因为focus、visibilitychange可能会同时触发，所以做了节流操作</span>
+    <span class="token keyword">let</span> pending <span class="token operator">=</span> <span class="token boolean">false</span>
+    <span class="token keyword">const</span> <span class="token function-variable function">onFocus</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>pending <span class="token operator">||</span> <span class="token operator">!</span>configRef<span class="token punctuation">.</span>current<span class="token punctuation">.</span>revalidateOnFocus<span class="token punctuation">)</span> <span class="token keyword">return</span>
+      pending <span class="token operator">=</span> <span class="token boolean">true</span>
+      <span class="token function">softRevalidate</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+      <span class="token function">setTimeout</span><span class="token punctuation">(</span>
+        <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span>pending <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        configRef<span class="token punctuation">.</span>current<span class="token punctuation">.</span>focusThrottleInterval
+      <span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">// 往FOCUS_REVALIDATORS对象上添加重新取数的回调</span>
+    <span class="token comment">// 具体实现可以看文章末尾附录</span>
+    <span class="token function">addRevalidator</span><span class="token punctuation">(</span><span class="token constant">FOCUS_REVALIDATORS</span><span class="token punctuation">,</span> onFocus<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>key<span class="token punctuation">,</span> revalidate<span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>我们在挂载阶段，需要往指定对象上添加对应的订阅者(回调函数)，然后监听页面可见的事件后，执行对应的回调。</p> <h2 id="浏览器网络重新连接时重新取数"><a href="#浏览器网络重新连接时重新取数" class="header-anchor">#</a> 浏览器网络重新连接时重新取数</h2> <p>知道了 <code>useSWR</code> 如何做到页面可见时重新取数后，我们也就知道它是如何做到网络重新连接时重新取数的逻辑，其实就是监听的事件不同罢了</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// 浏览器网络重新连接时的回调函数  key =&gt; callback[]</span>
+<span class="token keyword">const</span> <span class="token constant">RECONNECT_REVALIDATORS</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token comment">// 执行对象上对应key的函数。</span>
+<span class="token keyword">const</span> <span class="token function-variable function">revalidate</span> <span class="token operator">=</span> <span class="token parameter">revalidators</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token comment">// 当浏览器能够访问网络, 重新取数</span>
+window<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span>
+  <span class="token string">'online'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token function">revalidate</span><span class="token punctuation">(</span><span class="token constant">RECONNECT_REVALIDATORS</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token boolean">false</span>
+<span class="token punctuation">)</span>
+<span class="token keyword">function</span> <span class="token function">useSWR</span><span class="token punctuation">(</span><span class="token parameter">key<span class="token punctuation">,</span> fn<span class="token punctuation">,</span> config</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 忽略无关代码...</span>
+  <span class="token function">useIsomorphicLayoutEffect</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 浏览器可访问网络时回调</span>
+    <span class="token keyword">const</span> <span class="token function-variable function">onReconnect</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>configRef<span class="token punctuation">.</span>current<span class="token punctuation">.</span>revalidateOnReconnect<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">softRevalidate</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">// 往FOCUS_REVALIDATORS对象上添加重新取数的回调</span>
+    <span class="token comment">// 具体实现可以看文章末尾附录</span>
+    <span class="token function">addRevalidator</span><span class="token punctuation">(</span><span class="token constant">RECONNECT_REVALIDATORS</span><span class="token punctuation">,</span> onReconnect<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>key<span class="token punctuation">,</span> revalidate<span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="轮询"><a href="#轮询" class="header-anchor">#</a> 轮询</h2> <p>要实现轮询，只要使用setTimeout频繁的触发请求就可以，<code>useSWR</code> 默认配置中 <code>refreshInterval</code> 为0，代表不会触发请求，当设置大于0，才会按照设置的时间间隔进行请求。默认情况下，如果请求发生错误，或者页面不可见，无网络等情况都不会轮询（通常情况下这些时候是没必要的）。但我们可以通过设置 <code>refreshWhenHidden</code> 或 <code>refreshWhenOffline</code> 为 <code>true</code> 可以继续轮询。</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// 轮询，依赖项：refreshInterval(轮询间隔)、refreshWhenHidden(页面不可见时是否刷新)、refreshWhenOffline(无网络情况是否刷新)</span>
+<span class="token function">useIsomorphicLayoutEffect</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> timer <span class="token operator">=</span> <span class="token keyword">null</span>
+  <span class="token keyword">const</span> <span class="token function-variable function">tick</span> <span class="token operator">=</span> <span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 默认：发生错误 或者 页面不可见 或者 无网络情况 都不会重新取数</span>
+    <span class="token comment">// 设置 refreshWhenHidden、refreshWhenOffline为true，也会触发取数</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>
+      <span class="token operator">!</span>stateRef<span class="token punctuation">.</span>current<span class="token punctuation">.</span>error <span class="token operator">&amp;&amp;</span>
+      <span class="token punctuation">(</span>config<span class="token punctuation">.</span>refreshWhenHidden <span class="token operator">||</span> <span class="token function">isDocumentVisible</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span>
+      <span class="token punctuation">(</span>config<span class="token punctuation">.</span>refreshWhenOffline <span class="token operator">||</span> <span class="token function">isOnline</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 就是softRevalidate，去重取数</span>
+      <span class="token keyword">await</span> <span class="token function">revalidate</span><span class="token punctuation">(</span><span class="token punctuation">{</span> dedupe<span class="token operator">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">// 继续轮询</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>config<span class="token punctuation">.</span>refreshInterval<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      timer <span class="token operator">=</span> <span class="token function">setTimeout</span><span class="token punctuation">(</span>tick<span class="token punctuation">,</span> config<span class="token punctuation">.</span>refreshInterval<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  <span class="token comment">// config.refreshInterval默认是0，所以不会轮询。每次轮询都会执行tick函数</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>config<span class="token punctuation">.</span>refreshInterval<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    timer <span class="token operator">=</span> <span class="token function">setTimeout</span><span class="token punctuation">(</span>tick<span class="token punctuation">,</span> config<span class="token punctuation">.</span>refreshInterval<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+  <span class="token comment">// 返回清理函数</span>
+  <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>timer<span class="token punctuation">)</span> <span class="token function">clearTimeout</span><span class="token punctuation">(</span>timer<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
+  config<span class="token punctuation">.</span>refreshInterval<span class="token punctuation">,</span>
+  config<span class="token punctuation">.</span>refreshWhenHidden<span class="token punctuation">,</span>
+  config<span class="token punctuation">.</span>refreshWhenOffline<span class="token punctuation">,</span>
+  revalidate
+<span class="token punctuation">]</span><span class="token punctuation">)</span>
+</code></pre></div><h2 id="suspense模式"><a href="#suspense模式" class="header-anchor">#</a> Suspense模式</h2> <p>实现Suspense模式，我们只需要将请求的Promise当错误抛出，剩下的交给 <code>React</code> 处理就好。</p> <div class="language-jsx extra-class"><pre class="language-jsx"><code><span class="token keyword">function</span> <span class="token function">useSWR</span><span class="token punctuation">(</span><span class="token parameter">key<span class="token punctuation">,</span> fn<span class="token punctuation">,</span> config</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 忽略无关代码...</span>
+  <span class="token comment">// 异步组件 suspense模式，它应该是被暂停等待的</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>config<span class="token punctuation">.</span>suspense<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 尝试从缓存中取值</span>
+    <span class="token keyword">let</span> latestData <span class="token operator">=</span> cache<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span>
+    <span class="token keyword">let</span> latestError <span class="token operator">=</span> cache<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>keyErr<span class="token punctuation">)</span>
+    <span class="token comment">// 缓存不存在时，使用初始值。</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> latestData <span class="token operator">===</span> <span class="token string">'undefined'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      latestData <span class="token operator">=</span> initialData
+    <span class="token punctuation">}</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> latestError <span class="token operator">===</span> <span class="token string">'undefined'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      latestError <span class="token operator">=</span> initialError
+    <span class="token punctuation">}</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>
+      <span class="token keyword">typeof</span> latestData <span class="token operator">===</span> <span class="token string">'undefined'</span> <span class="token operator">&amp;&amp;</span>
+      <span class="token keyword">typeof</span> latestError <span class="token operator">===</span> <span class="token string">'undefined'</span>
+    <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 如果还没有发起请求，需要开始进行请求</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token constant">CONCURRENT_PROMISES</span><span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">revalidate</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+      <span class="token punctuation">}</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>
+        <span class="token constant">CONCURRENT_PROMISES</span><span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span>
+        <span class="token keyword">typeof</span> <span class="token constant">CONCURRENT_PROMISES</span><span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">.</span>then <span class="token operator">===</span> <span class="token string">'function'</span>
+      <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 如果是promise，直接抛出promise错误，实现suspense</span>
+        <span class="token keyword">throw</span> <span class="token constant">CONCURRENT_PROMISES</span><span class="token punctuation">[</span>key<span class="token punctuation">]</span>
+      <span class="token punctuation">}</span>
+      <span class="token comment">// 如果是普通值，直接返回</span>
+      latestData <span class="token operator">=</span> <span class="token constant">CONCURRENT_PROMISES</span><span class="token punctuation">[</span>key<span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">// 在suspense模式下，如果没有内容则抛出错误</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> latestData <span class="token operator">===</span> <span class="token string">'undefined'</span> <span class="token operator">&amp;&amp;</span> latestError<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">throw</span> latestError
+    <span class="token punctuation">}</span>
+    <span class="token comment">// 从缓存返回最新数据/错误，以防“key”已更改</span>
+    <span class="token keyword">return</span> <span class="token punctuation">{</span>
+      error<span class="token operator">:</span> latestError<span class="token punctuation">,</span>
+      data<span class="token operator">:</span> latestData<span class="token punctuation">,</span>
+      isValidating<span class="token operator">:</span> stateRef<span class="token punctuation">.</span>current<span class="token punctuation">.</span>isValidating
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="知识点总结"><a href="#知识点总结" class="header-anchor">#</a> 知识点总结</h2> <h3 id="利用-uselayouteffect-使时机提前"><a href="#利用-uselayouteffect-使时机提前" class="header-anchor">#</a> 利用 <code>useLayoutEffect</code> 使时机提前</h3> <blockquote><p>为了将请求时机提前，请求逻辑放在了 UI 渲染前（使用 <code>useLayoutEffect</code>），并兼容了服务端场景（使用 <code>useEffect</code>）</p></blockquote> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">const</span> useIsomorphicLayoutEffect <span class="token operator">=</span> <span class="token constant">IS_SERVER</span> <span class="token operator">?</span> useEffect <span class="token operator">:</span> useLayoutEffect
+</code></pre></div><h3 id="利用-requestidlecallback-不阻止渲染。"><a href="#利用-requestidlecallback-不阻止渲染。" class="header-anchor">#</a> 利用 <code>requestIdleCallback</code> 不阻止渲染。</h3> <blockquote><p>当请求存在缓存时，利用 <code>requestIdleCallback</code> 使取数发生在浏览器空闲时间，以免阻止渲染。</p></blockquote> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// 不支持requestIdleCallback，用setTimeout模拟</span>
+<span class="token keyword">const</span> rIC <span class="token operator">=</span> <span class="token constant">IS_SERVER</span> <span class="token operator">?</span> <span class="token keyword">null</span> <span class="token operator">:</span> window<span class="token punctuation">[</span><span class="token string">'requestIdleCallback'</span><span class="token punctuation">]</span> <span class="token operator">||</span> <span class="token punctuation">(</span><span class="token parameter">f</span> <span class="token operator">=&gt;</span> <span class="token function">setTimeout</span><span class="token punctuation">(</span>f<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> latestKeyedData <span class="token operator">!==</span> <span class="token string">'undefined'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 优化：如果有缓存数据，利用requestIdleCallback API 在浏览器空闲时间重新取数，以免阻塞渲染</span>
+  <span class="token function">rIC</span><span class="token punctuation">(</span>softRevalidate<span class="token punctuation">)</span>
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 没有缓存数据，就必须直接取数</span>
+  <span class="token function">softRevalidate</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h3 id="尽量减少渲染次数"><a href="#尽量减少渲染次数" class="header-anchor">#</a> 尽量减少渲染次数</h3> <blockquote><p>通过 <code>Object.defineProperty</code> 对属性get进行拦截，修改是否被依赖的标志位 <code>stateDependencies</code>。当没被依赖的属性更新时，可以做到不渲染（减少渲染次数）。</p></blockquote> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// 标志位，为true代表被调用者使用</span>
+<span class="token keyword">const</span> stateDependencies <span class="token operator">=</span> <span class="token function">useRef</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  data<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+  error<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+  isValidating<span class="token operator">:</span> <span class="token boolean">false</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre></div><div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// 请求标识符key可能发生变化，所以key不相等时，返回初始的值</span>
+Object<span class="token punctuation">.</span><span class="token function">defineProperties</span><span class="token punctuation">(</span>state<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  error<span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token function-variable function">get</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      stateDependencies<span class="token punctuation">.</span>current<span class="token punctuation">.</span>error <span class="token operator">=</span> <span class="token boolean">true</span>
+      <span class="token keyword">return</span> keyRef<span class="token punctuation">.</span>current <span class="token operator">===</span> key <span class="token operator">?</span> stateRef<span class="token punctuation">.</span>current<span class="token punctuation">.</span>error <span class="token operator">:</span> initialError
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    enumerable<span class="token operator">:</span> <span class="token boolean">true</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  data<span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token function-variable function">get</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      stateDependencies<span class="token punctuation">.</span>current<span class="token punctuation">.</span>data <span class="token operator">=</span> <span class="token boolean">true</span>
+      <span class="token keyword">return</span> keyRef<span class="token punctuation">.</span>current <span class="token operator">===</span> key <span class="token operator">?</span> stateRef<span class="token punctuation">.</span>current<span class="token punctuation">.</span>data <span class="token operator">:</span> initialData
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    enumerable<span class="token operator">:</span> <span class="token boolean">true</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  isValidating<span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token function-variable function">get</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      stateDependencies<span class="token punctuation">.</span>current<span class="token punctuation">.</span>isValidating <span class="token operator">=</span> <span class="token boolean">true</span>
+      <span class="token keyword">return</span> stateRef<span class="token punctuation">.</span>current<span class="token punctuation">.</span>isValidating
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    enumerable<span class="token operator">:</span> <span class="token boolean">true</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre></div><div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// 请求结束后会调用的dispatch函数</span>
+<span class="token keyword">let</span> <span class="token function-variable function">dispatch</span> <span class="token operator">=</span> <span class="token parameter">payload</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> shouldUpdateState <span class="token operator">=</span> <span class="token boolean">false</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> k <span class="token keyword">in</span> payload<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    stateRef<span class="token punctuation">.</span>current<span class="token punctuation">[</span>k<span class="token punctuation">]</span> <span class="token operator">=</span> payload<span class="token punctuation">[</span>k<span class="token punctuation">]</span>
+    <span class="token comment">// 如果调用者被依赖（有使用），则应该触发更新</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>stateDependencies<span class="token punctuation">.</span>current<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      shouldUpdateState <span class="token operator">=</span> <span class="token boolean">true</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  <span class="token comment">// 如果改变的属性存在依赖关系 或者是 suspense模式</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>shouldUpdateState <span class="token operator">||</span> config<span class="token punctuation">.</span>suspense<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 组件已卸载</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>unmountedRef<span class="token punctuation">.</span>current<span class="token punctuation">)</span> <span class="token keyword">return</span>
+    <span class="token comment">// 强制渲染</span>
+    <span class="token function">rerender</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><strong>在改变时，需要判断改变的值是否有被使用，没有的话，是不会强制渲染的</strong></p> <h3 id="usedebugvalue使用"><a href="#usedebugvalue使用" class="header-anchor">#</a> <code>useDebugValue</code>使用</h3> <p>使用自定义 <code>Hook</code> 时，可以使用 <code>useDebugValue</code> 在 <code>React</code> 开发者工具中进行查看，值取决于你传入什么。</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// React DevTools debugger 显示state的data</span>
+<span class="token function">useDebugValue</span><span class="token punctuation">(</span>stateRef<span class="token punctuation">.</span>current<span class="token punctuation">.</span>data<span class="token punctuation">)</span>
+</code></pre></div><h3 id="判断页面可见、网络连接、连接速度"><a href="#判断页面可见、网络连接、连接速度" class="header-anchor">#</a> 判断页面可见、网络连接、连接速度</h3> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// 页面是否可见</span>
+<span class="token keyword">const</span> isDocumentVisible <span class="token operator">=</span> document<span class="token punctuation">.</span>visibilityState <span class="token operator">!==</span> <span class="token string">'hidden'</span>
+<span class="token comment">// 浏览器是否有网络</span>
+<span class="token keyword">const</span> isOnline <span class="token operator">=</span> navigator<span class="token punctuation">.</span>onLine
+<span class="token comment">// 连接速度</span>
+<span class="token keyword">const</span> speed <span class="token operator">=</span> navigator<span class="token punctuation">.</span>connection<span class="token punctuation">.</span>effectiveType
+</code></pre></div><h2 id="附录"><a href="#附录" class="header-anchor">#</a> 附录</h2> <h3 id="默认配置-defaultconfig"><a href="#默认配置-defaultconfig" class="header-anchor">#</a> 默认配置 defaultConfig</h3> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// 默认配置，其中需要基于浏览器网络状态调整配置，slowConnection代表网络连接慢的情况</span>
+<span class="token keyword">const</span> defaultConfig <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 事件回调</span>
+  <span class="token function-variable function">onLoadingSlow</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token comment">// 超时</span>
+  <span class="token function-variable function">onSuccess</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token comment">// 成功</span>
+  <span class="token function-variable function">onError</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token comment">// 发生错误</span>
+  onErrorRetry<span class="token punctuation">,</span> <span class="token comment">// 发生错误重试</span>
+  <span class="token comment">// 错误重试间隔</span>
+  errorRetryInterval<span class="token operator">:</span> <span class="token punctuation">(</span>slowConnection <span class="token operator">?</span> <span class="token number">10</span> <span class="token operator">:</span> <span class="token number">5</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">1000</span><span class="token punctuation">,</span>
+  <span class="token comment">// 页面可见时请求节流间隔</span>
+  focusThrottleInterval<span class="token operator">:</span> <span class="token number">5</span> <span class="token operator">*</span> <span class="token number">1000</span><span class="token punctuation">,</span>
+  <span class="token comment">// 重复数据存在的间隔，</span>
+  dedupingInterval<span class="token operator">:</span> <span class="token number">2</span> <span class="token operator">*</span> <span class="token number">1000</span><span class="token punctuation">,</span>
+  <span class="token comment">// 请求超时时间</span>
+  loadingTimeout<span class="token operator">:</span> <span class="token punctuation">(</span>slowConnection <span class="token operator">?</span> <span class="token number">5</span> <span class="token operator">:</span> <span class="token number">3</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">1000</span><span class="token punctuation">,</span>
+  <span class="token comment">// 刷新数据间隔，0代表不刷新</span>
+  refreshInterval<span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+  <span class="token comment">// 页面可见时是否需要重新请求</span>
+  revalidateOnFocus<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token comment">// 浏览器网络重新连接时是否需要重新请求</span>
+  revalidateOnReconnect<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token comment">// 页面不可见时，是否需要刷新</span>
+  refreshWhenHidden<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+  <span class="token comment">// 浏览器无网络时，是否需要刷新</span>
+  refreshWhenOffline<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+  <span class="token comment">// 发生错误后是否进行重试</span>
+  shouldRetryOnError<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token comment">// 是否是Concurrent模式</span>
+  suspense<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+  <span class="token comment">// 比较data值函数，默认是深比较</span>
+  compare<span class="token operator">:</span> deepEqual
+<span class="token punctuation">}</span>
+</code></pre></div><h3 id="addrevalidator-和-removerevalidator"><a href="#addrevalidator-和-removerevalidator" class="header-anchor">#</a> addRevalidator 和 removeRevalidator</h3> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// 往全局对象上添加重新取数的回调</span>
+<span class="token comment">// 一个key对应多个回调，所以是数组。</span>
+<span class="token keyword">const</span> <span class="token function-variable function">addRevalidator</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">revalidators<span class="token punctuation">,</span> callback</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>callback<span class="token punctuation">)</span> <span class="token keyword">return</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>revalidators<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    revalidators<span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span>callback<span class="token punctuation">]</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    revalidators<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>callback<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token comment">// 从全局Map上移除重新取数的回调</span>
+<span class="token keyword">const</span> <span class="token function-variable function">removeRevalidator</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">revlidators<span class="token punctuation">,</span> callback</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>revlidators<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> revalidators <span class="token operator">=</span> revlidators<span class="token punctuation">[</span>key<span class="token punctuation">]</span>
+    <span class="token keyword">const</span> index <span class="token operator">=</span> revalidators<span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span>callback<span class="token punctuation">)</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>index <span class="token operator">&gt;=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// https://jsperf.com/array-remove-by-index</span>
+      <span class="token comment">// 将最后一个回调移至待删除位置，然后删除最后一位，比splice要快速</span>
+      revalidators<span class="token punctuation">[</span>index<span class="token punctuation">]</span> <span class="token operator">=</span> revalidators<span class="token punctuation">[</span>revalidators<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span>
+      revalidators<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="参考"><a href="#参考" class="header-anchor">#</a> 参考</h2> <ul><li><a href="https://juejin.im/post/6844903991730503687" target="_blank" rel="noopener noreferrer">精读《Hooks 取数 - swr 源码》<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li></ul></div></article> <section class="post-meta main-div" data-v-4e23451f><section class="post-date clearfix" data-v-4e23451f><span class="create-date" data-v-4e23451f>
+      发布时间 : 2020-08-21
+    </span> <span class="update-date" data-v-4e23451f>
+      最后修改 : 2020-08-23
+    </span></section> <section class="post-links" data-v-4e23451f><a href="/posts/2020/07/13/promise.html" class="post-link" data-v-4e23451f>
+      上一篇 : 实现Promise，遵循Promise/A+规范
+    </a> <a href="/posts/2020/08/31/vue-reactivity-peel.html" class="post-link" data-v-4e23451f>
+      下一篇 : @vue/reactivity 响应式源码阅读
+    </a></section></section> <div id="post-comments" class="main-div"><!----></div></div></main> <aside class="aside" data-v-4dd605a1><div class="info-card main-div" data-v-9d847660 data-v-4dd605a1><div class="info-card-header" data-v-9d847660><img src="/images/avatar.jpeg" alt="lihaoze" class="info-avatar" data-v-9d847660></div> <div class="info-card-body" data-v-9d847660><section class="info-nickname" data-v-9d847660>
+      lihaoze
+    </section> <section class="info-desc" data-v-9d847660>⌨️ Make progress everyday !</section> <section class="info-contact" data-v-9d847660><section data-v-9d847660><span title="Hangzhou, China" data-v-9d847660 data-v-9d847660><svg class="icon" style="font-size:1em;" data-v-9d847660 data-v-9d847660><title data-v-9d847660 data-v-9d847660>Hangzhou, China</title><use xlink:href="#icon-location" data-v-9d847660 data-v-9d847660></use></svg><span class="info-text" data-v-9d847660 data-v-9d847660>
+          Hangzhou, China
+        </span></span></section> <!----> <section data-v-9d847660><a href="mailto:lihaozecq@gmail.com" title="lihaozecq@gmail.com" data-v-9d847660 data-v-9d847660><svg class="icon" style="font-size:1em;" data-v-9d847660 data-v-9d847660><title data-v-9d847660 data-v-9d847660>lihaozecq@gmail.com</title><use xlink:href="#icon-email" data-v-9d847660 data-v-9d847660></use></svg><span class="info-text" data-v-9d847660 data-v-9d847660>
+          lihaozecq@gmail.com
+        </span></a></section></section></div> <div class="info-card-footer" data-v-9d847660><section class="info-sns clearfix" data-v-9d847660><a href="https://github.com/lhz960904" target="_blank" class="sns-link" data-v-9d847660><span title="GitHub: lhz960904" class="sns-icon" data-v-9d847660 data-v-9d847660><svg class="icon" style="font-size:1.5em;" data-v-9d847660 data-v-9d847660><title data-v-9d847660 data-v-9d847660>GitHub: lhz960904</title><use xlink:href="#icon-github" data-v-9d847660 data-v-9d847660></use></svg></span></a><a href="https://weibo.com/u/5220436046" target="_blank" class="sns-link" data-v-9d847660><span title="新浪微博: @_泽zZ" class="sns-icon" data-v-9d847660 data-v-9d847660><svg class="icon" style="font-size:1.5em;" data-v-9d847660 data-v-9d847660><title data-v-9d847660 data-v-9d847660>新浪微博: @_泽zZ</title><use xlink:href="#icon-weibo" data-v-9d847660 data-v-9d847660></use></svg></span></a><a href="https://www.zhihu.com/people/li-hao-ze-55-4" target="_blank" class="sns-link" data-v-9d847660><span title="知乎: lihaoze" class="sns-icon" data-v-9d847660 data-v-9d847660><svg class="icon" style="font-size:1.5em;" data-v-9d847660 data-v-9d847660><title data-v-9d847660 data-v-9d847660>知乎: lihaoze</title><use xlink:href="#icon-zhihu" data-v-9d847660 data-v-9d847660></use></svg></span></a><a href="https://juejin.im/user/595361faf265da6c1f760178" target="_blank" class="sns-link" data-v-9d847660><span title="掘金: lihaozecq" class="sns-icon" data-v-9d847660 data-v-9d847660><svg class="icon" style="font-size:1.5em;" data-v-9d847660 data-v-9d847660><title data-v-9d847660 data-v-9d847660>掘金: lihaozecq</title><use xlink:href="#icon-juejin" data-v-9d847660 data-v-9d847660></use></svg></span></a></section></div></div> <div class="post-nav-card main-div" style="position:relative;top:0;width:0px;" data-v-4dd605a1><div class="post-nav-contents"><svg class="icon"><title>book</title><use xlink:href="#icon-book"></use></svg> <span>文章目录</span> <div class="post-nav-toc"><ul><li><a href="/posts/2020/08/21/react-swr-peel.html#配置">配置</a></li><li><a href="/posts/2020/08/21/react-swr-peel.html#缓存">缓存</a></li><li><a href="/posts/2020/08/21/react-swr-peel.html#基本使用">基本使用</a></li><li><a href="/posts/2020/08/21/react-swr-peel.html#取数请求逻辑">取数请求逻辑</a></li><li><a href="/posts/2020/08/21/react-swr-peel.html#页面可见时重新取数">页面可见时重新取数</a></li><li><a href="/posts/2020/08/21/react-swr-peel.html#浏览器网络重新连接时重新取数">浏览器网络重新连接时重新取数</a></li><li><a href="/posts/2020/08/21/react-swr-peel.html#轮询">轮询</a></li><li><a href="/posts/2020/08/21/react-swr-peel.html#suspense模式">Suspense模式</a></li><li><a href="/posts/2020/08/21/react-swr-peel.html#知识点总结">知识点总结</a><ul><li><a href="/posts/2020/08/21/react-swr-peel.html#利用-uselayouteffect-使时机提前">利用 useLayoutEffect 使时机提前</a></li><li><a href="/posts/2020/08/21/react-swr-peel.html#利用-requestidlecallback-不阻止渲染。">利用 requestIdleCallback 不阻止渲染。</a></li><li><a href="/posts/2020/08/21/react-swr-peel.html#尽量减少渲染次数">尽量减少渲染次数</a></li><li><a href="/posts/2020/08/21/react-swr-peel.html#usedebugvalue使用">useDebugValue使用</a></li><li><a href="/posts/2020/08/21/react-swr-peel.html#判断页面可见、网络连接、连接速度">判断页面可见、网络连接、连接速度</a></li></ul></li><li><a href="/posts/2020/08/21/react-swr-peel.html#附录">附录</a><ul><li><a href="/posts/2020/08/21/react-swr-peel.html#默认配置-defaultconfig">默认配置 defaultConfig</a></li><li><a href="/posts/2020/08/21/react-swr-peel.html#addrevalidator-和-removerevalidator">addRevalidator 和 removeRevalidator</a></li></ul></li><li><a href="/posts/2020/08/21/react-swr-peel.html#参考">参考</a></li></ul></div></div> <div class="post-nav-comments"><svg class="icon"><title>comment</title><use xlink:href="#icon-comment"></use></svg> <a href="/posts/2020/08/21/react-swr-peel.html#post-comments">
+      评论
+    </a></div></div></aside></div> <footer class="footer" data-v-1375e54c><p class="footer-sns-links" data-v-1375e54c><a href="https://github.com/lhz960904" target="_blank" class="sns-link" data-v-1375e54c><span title="GitHub: lhz960904" class="sns-icon" data-v-1375e54c data-v-1375e54c><svg class="icon" style="font-size:25px;" data-v-1375e54c data-v-1375e54c><title data-v-1375e54c data-v-1375e54c>GitHub: lhz960904</title><use xlink:href="#icon-github" data-v-1375e54c data-v-1375e54c></use></svg></span></a><a href="https://weibo.com/u/5220436046" target="_blank" class="sns-link" data-v-1375e54c><span title="新浪微博: @_泽zZ" class="sns-icon" data-v-1375e54c data-v-1375e54c><svg class="icon" style="font-size:25px;" data-v-1375e54c data-v-1375e54c><title data-v-1375e54c data-v-1375e54c>新浪微博: @_泽zZ</title><use xlink:href="#icon-weibo" data-v-1375e54c data-v-1375e54c></use></svg></span></a><a href="https://www.zhihu.com/people/li-hao-ze-55-4" target="_blank" class="sns-link" data-v-1375e54c><span title="知乎: lihaoze" class="sns-icon" data-v-1375e54c data-v-1375e54c><svg class="icon" style="font-size:25px;" data-v-1375e54c data-v-1375e54c><title data-v-1375e54c data-v-1375e54c>知乎: lihaoze</title><use xlink:href="#icon-zhihu" data-v-1375e54c data-v-1375e54c></use></svg></span></a><a href="https://juejin.im/user/595361faf265da6c1f760178" target="_blank" class="sns-link" data-v-1375e54c><span title="掘金: lihaozecq" class="sns-icon" data-v-1375e54c data-v-1375e54c><svg class="icon" style="font-size:25px;" data-v-1375e54c data-v-1375e54c><title data-v-1375e54c data-v-1375e54c>掘金: lihaozecq</title><use xlink:href="#icon-juejin" data-v-1375e54c data-v-1375e54c></use></svg></span></a></p> <p class="footer-text" data-v-1375e54c><span data-v-1375e54c>Powered by </span> <a href="https://github.com/vuejs/vuepress" target="_blank" data-v-1375e54c>
+      VuePress
+    </a> <span data-v-1375e54c> | </span> <a href="https://github.com/meteorlxy/vuepress-theme-meteorlxy" target="_blank" data-v-1375e54c>
+        meteorlxy
+      </a></p> <!----></footer></div><div class="global-ui"><!----><!----></div></div>
+    <script src="/assets/js/app.21acb0b1.js" defer></script><script src="/assets/js/7.855be055.js" defer></script><script src="/assets/js/23.f8d7524e.js" defer></script>
+  </body>
+</html>
